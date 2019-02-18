@@ -1,0 +1,27 @@
+<snippet>
+	<content><![CDATA[
+<!--*******************************************************************************************************************
+/* Project		:	Project
+/*
+/* FileName		:	$1
+/*
+/* Author		:	Kristian
+/*
+/* Date Created	:	$2
+/*
+/* Description	:	"${3:Set a filename description here.}"
+/*
+/*											COPYRIGHT 2019 | AusPhil
+/*
+/*******************************************************************************************************************-->
+
+	${4:Your code here.}
+
+<!-- /$1 -->
+]]></content>
+	<!-- Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>file-hdr</tabTrigger>
+
+	<!-- Set a scope to limit where the snippet will trigger -->
+	<scope>text.html</scope>
+</snippet>
