@@ -1,5 +1,6 @@
 <snippet>
-	<content><![CDATA[
+	<content>
+		<![CDATA[
 <!--*******************************************************************************************************************
 /* Project		:	Project
 /*
@@ -15,13 +16,16 @@
 /*
 /*******************************************************************************************************************-->
 
-	${4:Your code here.}
+${4:Your code here.}
 
 <!-- /$1 -->
-]]></content>
+		]]>
+	</content>
+	
 	<!-- Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>file-hdr</tabTrigger>
 
 	<!-- Set a scope to limit where the snippet will trigger -->
 	<scope>text.html</scope>
+	
 </snippet>
