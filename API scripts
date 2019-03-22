@@ -1,0 +1,40 @@
+<?php
+require 'vendor/autoload.php';
+
+use JiraRestApi\Issue\IssueService;
+use JiraRestApi\JiraException;
+
+try {
+    $issueService = new IssueService();
+	// $queryParam variable will contain the array for the requested data fields, it must be specific on being called.
+	// in this parameters I am calling the summary and status of a issue.
+	// since its in JSON to javascript it will return data in unique array.
+	// the 'expand' request field refers to the data OUTSIDE the screen fields.
+	// the default data request is *all, which means ALL data type about the issue will be requested and given to.
+    $queryParam = [
+        'fields' => [  //'*navigable',
+            'summary',
+            'status'
+        ],
+       /* 'expand' => [
+            'renderedFields',
+            'names',
+            'schema',
+            'transitions',
+            'operations',
+        ]*/
+    ];
+     // executing the command and passed the required variables then the received data will be stored on $issue variables.     
+    $issue = $issueService->get('TESTSW-115', $queryParam);
+	
+// 	var_dump($issue->fields->summary);
+    //
+ 	$test = $issue->fields->summary;
+ 	//
+ 	$teststatus = $issue->fields->status->name;
+
+	 
+	echo "<script type='text/javascript'>alert(".json_encode("Issue Summary: " .$test."\n Issue Status: ".$teststatus).") </script>";	
+} catch (JiraException $e) {
+	print("Error Occured! " . $e->getMessage());
+}
