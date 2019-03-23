@@ -1,0 +1,69 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	background: url(img/bg.jpg);
+	font-family: sans-serif;
+
+}
+.sendform
+{
+	width: 540px;
+	height: 490px;
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	box-sizing: border-box;
+	padding: 40px 50px;
+}
+h1
+{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.sendform input[type = "text"], input[type = "password"], textarea
+{
+	border:none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 60px;
+	color: #fff;
+	font-size: 15px;
+
+}
+.sendform input[type = 'submit']
+{
+
+	border-top: 20px;
+	border:none;
+	outline: none;
+	height: 40px;
+	background: lightgreen;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 25px;
+	font-weight: 20px;
+	border-top: 50px;
+
+}
+.sendform input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.sendform p{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+
+}
+.sendform input[type='submit']:hover
+{
+	cursor: pointer;
+	background: cyan;
+	color: #000;
+}
