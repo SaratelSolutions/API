@@ -7,8 +7,8 @@ $tosend = $_POST['number'];
 $sendingmessage = $_POST['message'];
 
 // Find your Account Sid and Auth Token at twilio.com/console
-$sid    = "ACdaa38dc6514b23f8c987c3d059b09806";
-$token  = "83f5dbf6bb6a5b996e92aaef7911857f";
+$sid    = $_ENV['sid'];
+$token  = $_ENV['token'];
 $twilio = new Client($sid, $token);
 
 $message = $twilio->messages
