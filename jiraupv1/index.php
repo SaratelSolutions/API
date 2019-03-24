@@ -2,7 +2,7 @@
 //$teststring = "add";
 $url = "https://saratel.atlassian.net/rest/api/2/issue/TESTSW-108";
 $username = "gabriel.alforque@anaca.com.au";
-$password = "154263789aA";
+$password = "************";
 $txt = '{
      "update": {
 
