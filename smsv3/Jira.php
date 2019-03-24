@@ -13,7 +13,7 @@ $stat =		$_SESSION['storedstat'];
 
 
  			$username = "gabriel.alforque@anaca.com.au";
-			$password = "154263789aA";
+			$password = "*************";
 
 			$base64_usrpwd = base64_encode($username.':'.$password);
 			
