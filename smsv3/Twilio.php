@@ -16,8 +16,8 @@ $date = date("Y/m/d");
 //print($date);
 use Twilio\Rest\Client;
 
-$sid    = "AC2abc2db6780b2615c558532a711bc9ad";
-$token  = "0e70a16a89728299c29a055c21a09929";
+$sid    = $sid;
+$token  = $token;
 
 $twilio = new Client($sid, $token);
 $messages = $twilio->messages
