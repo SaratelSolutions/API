@@ -1,6 +1,6 @@
 <?php
 $username = "gabriel.alforque@anaca.com.au";
-$password = "154263789aA";
+$password = "**************";
 $mainurl = "https://saratel.atlassian.net/rest/api/2/issue/TESTSW-111/comment";
 $issueurl = "";
 
