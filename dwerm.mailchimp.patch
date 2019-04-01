@@ -1,0 +1,27 @@
+<?php
+//required class to use the composer
+require("vendor/autoload.php");
+//required class to use the classes
+use \DrewM\MailChimp\MailChimp;
+//your account unique API Key 
+$APIkey = 'yourkey';
+//calling and setting up the mailchimp method and pass the API key.
+$MailChimp = new MailChimp($APIkey);
+//your own list in Mailchimp, its unique ID
+$list_id = 'yourid';
+//will execute the method subscriberHash on the selected email to identify and use the update methods
+$subscriber_hash = $MailChimp->subscriberHash('it@saratelsolutions.com');
+//along with the list id the subscriber is identifed too in the url link.
+$result = $MailChimp->patch("lists/$list_id/members/$subscriber_hash", [
+	//merge_fields refers to the unique data fields in mailchimp.
+		'merge_fields' => ['FNAME' => 'Saratel', 'LNAME' => 'Solutions', 'PHONE' => '2212313'],
+		]);
+		// a condition to know if the method is executed succuesfully it will print the result.
+		if($MailChimp->success()){
+			print_r($result);
+		}
+		else{
+			//if it fails then it will use the getLastEror() method to get the error sent by Mailchimp.
+			echo $Mailchimp->gtLastError();
+		}
+?>
