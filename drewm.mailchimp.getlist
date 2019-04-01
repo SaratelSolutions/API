@@ -1,0 +1,16 @@
+<?php
+//required class to use the composer
+require("vendor/autoload.php");
+//required class to use the classes
+use \DrewM\MailChimp\MailChimp;
+//your account unique API Key 
+$APIkey = 'yourapi';
+//calling and setting up the mailchimp method and pass the API key.
+$MailChimp = new MailChimp($APIkey);
+//your own list in Mailchimp, its unique ID
+$list_id = 'yourlist';
+//the output of data and will be stored on variable $result
+$result = $MailChimp->get('lists');
+//printing data
+print_r($result);
+?>
