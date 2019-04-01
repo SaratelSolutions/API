@@ -1,0 +1,29 @@
+<?php
+//required class to use the composer
+require("vendor/autoload.php");
+//required class to use the classes
+use \DrewM\MailChimp\MailChimp;
+//your account unique API Key 
+$APIkey = '590fe7e6f25965cb7908dd304599ed21-us20';
+//calling and setting up the mailchimp method and pass the API key.
+$MailChimp = new MailChimp($APIkey);
+//your own list in Mailchimp, its unique ID
+$list_id = '6325ff672e';
+
+//$subscriber_hash = $MailChimp->subscriberHash('it@saratelsolutions.com');
+
+$result = $MailChimp->post("lists/$list_id/members", [
+// the email_address refers to the subscriber that will be added
+	//status means will mean if he will be added or removed, in this case subscribed means adding him to the list
+							'email_address' => 'it@saratelsolutions.com',
+							'status'		=> 'subscribed',
+						]);
+		// a condition to know if the method is executed succuesfully it will print the result.
+		if($MailChimp->success()){
+			print_r($result);
+		}
+		else{
+			//if it fails then it will use the getLastEror() method to get the error sent by Mailchimp.
+			echo $Mailchimp->gtLastError();
+		}
+?>
