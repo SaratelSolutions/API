@@ -22,8 +22,8 @@ $subscriber_hash = $MailChimp->subscriberHash('it@saratelsolutions.com');
 			'addr2' => 'Santziae', 
 			'city' => 'Davao',
 			'state' => 'Davao Del Sur', 
-			'zip' => '80001', '
-			country' => 'Philippines'],
+			'zip' => '80001', 
+			'country' => 'Philippines'],
 			'BIRTHDAY' => '08/18'
 		],
 			
