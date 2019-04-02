@@ -37,6 +37,6 @@ $subscriber_hash = $MailChimp->subscriberHash('it@saratelsolutions.com');
 		}
 		else{
 			//if it fails then it will use the getLastEror() method to get the error sent by Mailchimp.
-			echo $Mailchimp->gtLastError();
+			echo $Mailchimp->getLastError();
 		}
 ?>
