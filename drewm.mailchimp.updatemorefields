@@ -4,11 +4,11 @@ require("vendor/autoload.php");
 //required class to use the classes
 use \DrewM\MailChimp\MailChimp;
 //your account unique API Key 
-$APIkey = '07d6ea3ee80556ebdfe3994456fe489d-us20';
+$APIkey = '';
 //calling and setting up the mailchimp method and pass the API key.
 $MailChimp = new MailChimp($APIkey);
 //your own list in Mailchimp, its unique ID
-$list_id = '6325ff672e';
+$list_id = '';
 //will execute the method subscriberHash on the selected email and will identify request data type.
 $subscriber_hash = $MailChimp->subscriberHash('it@saratelsolutions.com');
 
