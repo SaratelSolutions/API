@@ -1,0 +1,45 @@
+<?php
+//required class to use the composer
+require("vendor/autoload.php");
+//required class to use the classes
+use \DrewM\MailChimp\MailChimp;
+//your account unique API Key 
+$APIkey = '07d6ea3ee80556ebdfe3994456fe489d-us20';
+//calling and setting up the mailchimp method and pass the API key.
+$MailChimp = new MailChimp($APIkey);
+//your own list in Mailchimp, its unique ID
+$list_id = '6325ff672e';
+//will execute the method subscriberHash on the selected email and will identify request data type.
+$subscriber_hash = $MailChimp->subscriberHash('it@saratelsolutions.com');
+
+	
+		//will execute update method to update the defined fields in mailchimp
+		$result = $MailChimp->patch("lists/$list_id/members/$subscriber_hash", [
+			'merge_fields' =>['FNAME' => 'Gabriel',
+			 'LNAME' => 'Alforque',
+			 'PHONE' => '225478688',
+			'ADDRESS'=>['addr1' =>'moelvez', 
+			'addr2' => 'Santziae', 
+			'city' => 'Davao',
+			'state' => 'Davao Del Sur', 
+			'zip' => '80001', '
+			country' => 'Philippines'],
+			'BIRTHDAY' => '08/18'
+		],
+			
+		 	
+		]);
+
+		if($MailChimp->success()){
+			//will output the result data.
+			print_r($result);
+
+			
+		
+
+		}
+		else{
+			//if it fails then it will use the getLastEror() method to get the error sent by Mailchimp.
+			echo $Mailchimp->getLastError();
+		}
+?>0
