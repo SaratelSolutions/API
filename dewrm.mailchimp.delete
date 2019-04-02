@@ -1,0 +1,32 @@
+<?php
+//required class to use the composer
+require("vendor/autoload.php");
+//required class to use the classes
+use \DrewM\MailChimp\MailChimp;
+//your account unique API Key 
+$APIkey = 'yourkey';
+//calling and setting up the mailchimp method and pass the API key.
+$MailChimp = new MailChimp($APIkey);
+//your own list in Mailchimp, its unique ID
+$list_id = 'yourid';
+//will execute the method subscriberHash on the selected email and will identify request data type.
+$subscriber_hash = $MailChimp->subscriberHash('gerlyn.detoya@anaca.com.au');
+
+	
+		//will execute a delete method on the subscriber on the list and then identifies the memberthen removes him/her on the list.
+		$result = $MailChimp->delete("lists/$list_id/members/$subscriber_hash");
+
+
+		if($MailChimp->success()){
+			//will output the result data.
+			print_r($result);
+
+			
+		
+
+		}
+		else{
+			//if it fails then it will use the getLastEror() method to get the error sent by Mailchimp.
+			echo $Mailchimp->getLastError();
+		}
+?>
