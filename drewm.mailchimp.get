@@ -1,0 +1,42 @@
+<?php
+//required class to use the composer
+require("vendor/autoload.php");
+//required class to use the classes
+use \DrewM\MailChimp\MailChimp;
+//your account unique API Key 
+$APIkey = 'yourapi';
+//calling and setting up the mailchimp method and pass the API key.
+$MailChimp = new MailChimp($APIkey);
+//your own list in Mailchimp, its unique ID
+$list_id = '123131234';
+//will execute the method subscriberHash on the selected email to identify
+$subscriber_hash = $MailChimp->subscriberHash('it@saratelsolutions.com');
+
+	//will execute a get method to request on the user account and get data using the mailchimp API and $result variable will contain the results of it.
+		$result = $MailChimp->get("lists/$list_id/members/$subscriber_hash");
+	
+				// a condition to know if the method is executed succuesfully it will print the result.
+		if($MailChimp->success()){
+			//will output the result data.
+			print_r($result);
+
+			//filter the array and its objects.
+			print_r("<br> Mailchimp ID: ".$result['id']);
+			print_r("<br> Email: ".$result['email_address']);
+			print_r("<br> First Name: ".$result['merge_fields']['FNAME']);
+			print_r("<br> Last Name: ".$result['merge_fields']['LNAME']);
+			print_r("<br> Street: ".$result['merge_fields']['ADDRESS']['addr1']);
+			print_r("<br> Building: ".$result['merge_fields']['ADDRESS']['addr2']);
+			print_r("<br> City: ".$result['merge_fields']['ADDRESS']['city']);
+			print_r("<br> State: ".$result['merge_fields']['ADDRESS']['state']);
+			print_r("<br> Zip: ".$result['merge_fields']['ADDRESS']['zip']);
+			print_r("<br> Country: ".$result['merge_fields']['ADDRESS']['country']);
+			print_r("<br> Status: ".$result['status']);
+		
+
+		}
+		else{
+			//if it fails then it will use the getLastEror() method to get the error sent by Mailchimp.
+			echo $Mailchimp->gtLastError();
+		}
+?>
