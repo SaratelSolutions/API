@@ -1,0 +1,47 @@
+<?php
+//required class to use the composer
+require("vendor/autoload.php");
+//required class to use the classes
+use \DrewM\MailChimp\MailChimp;
+//required class to use the batch methods
+use \DrewM\MailChimp\Batch;
+//your account unique API Key 
+$APIkey = '';
+//calling and setting up the mailchimp method and pass the API key.
+$MailChimp = new MailChimp($APIkey);
+//your own list in Mailchimp, its unique ID
+$list_id = '';
+//will execute the method subscriberHash on the selected email and will identify request data type.
+//$subscriber_hash = $MailChimp->subscriberHash('it@saratelsolutions.com');
+
+	//The $Batch variable will now contain the Batch methods.
+	//$Batch = $Mailchimp->new_batch();
+	$Batch 	   = $MailChimp->new_batch();
+
+	//its much same as the regular post with the difference of the ID such as "op1", "op2", "op3" as the identifier for the operations.
+	$Batch->post("op1", "lists/$list_id/members" , [
+				'email_address' => 'betty.ton@anaca.com.au',
+				'status'		=> 'subscribed',
+	]);
+
+	$Batch->post("op2", "lists/$list_id/members" , [
+				'email_address' => 'nina.ferraren@anaca.com.au',
+				'status'		=> 'subscribed',
+	]);
+
+	$Batch->post("op3", "lists/$list_id/members" , [
+				'email_address' => 'emmanuel.saguban@anaca.com.au',
+				'status'		=> 'subscribed',
+	]);
+
+	//runs the execute methods for all the batch
+	$result = $Batch->execute();
+
+	//since the result execution won't return a response, a check status is needed. It will return the Batch ID and anything related to the batch.
+
+	//$batch_id ='7cfc9d15bf';
+	//$MailChimp->new_batch($batch_id);
+	//$result = $Batch->check_status();
+
+	echo "<br><br>".json_encode($result);
+?>
