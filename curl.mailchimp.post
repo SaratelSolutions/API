@@ -1,0 +1,68 @@
+<?php
+//securty token
+$authToken = "";
+//list id
+$list_id = ";
+//subscriber email and details.
+$email = "alex.florentino@anaca.com.au";
+$fname = "Alex";
+$lname = "Florintino";
+$phone = "22567";
+$postData = array(
+	"email_address" => $email, 
+	"status" => "subscribed",
+	"merge_fields" => array(
+		"FNAME" => $fname,
+		"LNAME" => $lname,
+		"PHONE" => $phone,
+		"ADDRESS" => array(
+		"addr1" => "Talosz",
+		"addr2" => "Solium",
+		"city" => "Davao",
+		"state" => "Davao Del Sur",
+		"zip" => "8012",
+		"country" => "Philippines")
+	)
+);
+		/* test ver, works, cleaner ver.
+		$ch = curl_init('https:/us20.api.mailchimp.com/3.0/lists/'.$list_id.'/members/');
+		curl_setopt_array($ch, array(
+			CURLOPT_POST => TRUE,
+			CURLOPT_RETURNTRANSFER => TRUE,
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: apikey '.$authToken,
+				'Content-Type: application/json'
+				),
+
+			CURLOPT_POSTFIELDS => json_encode($postData)
+
+			));
+
+		$response = curl_exec($ch); */
+
+		//most familliar method
+		//intiate curl
+		$ch = curl_init();
+		//where to send the data
+		curl_setopt($ch, CURLOPT_URL, 'https:/us20.api.mailchimp.com/3.0/lists/'.$list_id.'/members/');
+		//confirmation of transfer, if it mailchimp returns true
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		//initiate POST request data type
+		curl_setopt($ch, CURLOPT_POST, 1);
+		//authentication headers
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			'Authorization: apikey '.$authToken,
+			'Content-Type: application/json'));
+		//converiting array to json format
+		$json_string = json_encode($postData);
+		//after converted send them as postfields
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $json_string);
+		//execute the curl
+		$result = curl_exec($ch);
+		//after execution, removes data of the curl.
+		curl_close($ch);
+
+
+		
+print_r($result);
+?>
