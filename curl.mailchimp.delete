@@ -4,8 +4,8 @@ $authToken = "";
 //list id
 $list_id = "";
 //subscriber email and details.
-//$email = "irish.limas@anaca.com.au";
-$email_id = "06624c53217ed15a8d270fbe3a852624";
+$email = "";
+$email_id = "";
 		
 		//intiate curl
 		$ch = curl_init();
@@ -15,7 +15,7 @@ $email_id = "06624c53217ed15a8d270fbe3a852624";
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		//initiate POST request data type
 	//	curl_setopt($ch, CURLOPT_POST, 1);
-	//initiate DELETE request data type for removing
+		//initiate DELETE request data type for removing
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 		//authentication headers
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -28,16 +28,11 @@ $email_id = "06624c53217ed15a8d270fbe3a852624";
 		curl_close($ch);
 
 
-		if($MailChimp->success()){
-			//will output the result data.
-			echo $email. " has been removed.!";
+		
+		print_r($result);
 		
 
-		}
-		else{
-			//if it fails then it will use the getLastEror() method to get the error sent by Mailchimp.
-			echo $Mailchimp->getLastError();
-		}
+		
 //print_r($result);
 
 
