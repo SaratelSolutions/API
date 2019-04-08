@@ -1,0 +1,43 @@
+<?php
+//securty token
+$authToken = "";
+//list id
+$list_id = "";
+//subscriber email and details.
+//$email = "irish.limas@anaca.com.au";
+$email_id = "06624c53217ed15a8d270fbe3a852624";
+		
+		//intiate curl
+		$ch = curl_init();
+		//where to send the data
+		curl_setopt($ch, CURLOPT_URL, 'https:/us20.api.mailchimp.com/3.0/lists/'.$list_id.'/members/'.$email_id);
+		//confirmation of transfer, if it mailchimp returns true
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		//initiate POST request data type
+	//	curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+		//authentication headers
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			'Authorization: apikey '.$authToken,
+			'Content-Type: application/json'));
+		
+		//execute the curl
+		$result = curl_exec($ch);
+		//after execution, removes data of the curl.
+		curl_close($ch);
+
+
+		if($MailChimp->success()){
+			//will output the result data.
+			echo $email. " has been removed.!";
+		
+
+		}
+		else{
+			//if it fails then it will use the getLastEror() method to get the error sent by Mailchimp.
+			echo $Mailchimp->getLastError();
+		}
+//print_r($result);
+
+
+?>
