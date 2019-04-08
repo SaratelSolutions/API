@@ -15,6 +15,7 @@ $email_id = "06624c53217ed15a8d270fbe3a852624";
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		//initiate POST request data type
 	//	curl_setopt($ch, CURLOPT_POST, 1);
+	//initiate DELETE request data type for removing
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 		//authentication headers
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
