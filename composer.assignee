@@ -1,0 +1,27 @@
+<?php
+session_start();
+require 'vendor/autoload.php';
+
+use JiraRestApi\Issue\IssueService;
+use JiraRestApu\JiraException;
+
+$issueKey = $_SESSION['storedkey'];
+
+try
+{
+	$issueService = new IssueService();
+
+	$assignee = 'gabriel.alforque';
+
+	$ret = $issueService->changeAssignee($issueKey, $assignee);
+
+	var_dump($ret);
+}
+catch(JiraException $e)
+{
+	$this->assertTrue(FALSE, "Change Assignee Failed : ". $e->getMessage());
+}
+
+  	unset($_SESSION['storedkey']);
+    session_destroy();
+?>
