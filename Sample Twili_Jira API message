@@ -1,0 +1,52 @@
+<?php
+// A request data method for Twilio
+// Executes Request function to twilio. This will get any recent messages
+
+//request the From object within the Messages Array in twilio, the From contains the senders number
+$number = $_POST['From'];
+//request the Body object within the Messages Array in twilio, the Body contains the message of the sender.
+$body = $_POST['Body'];
+
+
+//loads and allows the use of lestiff jira package and composer classes
+require 'vendor/autoload.php';
+
+// request and use the issue service package function within the lestiff packages. This handles creating issues
+use JiraRestApi\Issue\IssueService;
+// request and use the issue fields package function within the lestiff packages. This handles creating and defining the data to be sent to the same Issue Screen Fields on the target issue.
+use JiraRestApi\Issue\IssueField;
+// use JiraRestApi\Issue\Comment;
+// request and use the exceptions package function within the lestiff packages. This handles the error messages.
+use JiraRestApi\JiraException;
+
+try
+{
+	// calling and assigning the issueField Method of IssueServices classes
+	$issueField = new IssueField();
+	// defining the data needed to be Passed into the class and will be the data sent to the target server jira site to create the ISSUE with the use of REST API. The data must match the data within the Screen Fields of that Jira Project and Issue Types.
+	$issueField->setProjectKey("TESTSW")
+				->setSummary("A Message in Twilio")
+				->setPriorityName("Medium")
+				->setIssueType("Service Request")
+				->setDescription(" Message Details: \n
+								 $body")
+				->addLabel("API")
+				->addLabel("Twilio")
+				->addLabel("$number")						
+				;
+	//calling and re assing the IssueService funcction to $issueServices.
+	$issueService = new IssueService();
+
+	//executes the creating of issue with the calling of $issueService, which contains the REST API methods to create the Issue then $issueField which contains the defining and passing of the data which matches the Screen Fields of the Jira Issue. Jira will return a confirmation data along with the data fields of that newly created Issue which will be contained by $ret
+	$ret = $issueService->create($issueField);
+
+}
+//catches method, all the errors will be based on the Jira Exception which is a custom function within the Jira Exception classes
+catch (JiraException $e)
+{
+	//if the catch statement is true the JiraException function will pass the result message to $e, it will use the getMessage function to get the exception message contained in the $e
+	print_r("Error Occured! " . $e->getMessage());
+}
+
+?>
+
